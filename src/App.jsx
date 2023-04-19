@@ -4,8 +4,8 @@ import { withAuthenticator} from '@aws-amplify/ui-react';
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import React, {useEffect } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { CreateProfile } from '../src/pages/CreateProfile';
+// import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// import { CreateProfile } from '../src/pages/CreateProfile';
 
 Amplify.configure(awsconfig);
 
@@ -21,7 +21,7 @@ function App() {
 }, []);
   return (
     <Authenticator>
-      <BrowserRouter>
+      {/* <BrowserRouter>
       <div className='flex relative dark:bg-main-dark-bg'>
         <div>
           <Routes>
@@ -29,13 +29,13 @@ function App() {
           </Routes>
         </div>
       </div>
-      </BrowserRouter>
-      {/* {({ signOut, user }) => (
+      </BrowserRouter> */}
+      {({ signOut, user }) => (
         <div className="App">
           <h1>Hello {user.email}</h1>
           <button onClick={signOut}>Sign out</button>
         </div>
-    )} */}
+    )}
     </Authenticator>
   );
 }
