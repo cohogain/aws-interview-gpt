@@ -1,0 +1,5 @@
+{
+  "AppSyncApiName": "interviewamplify",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false
+}
