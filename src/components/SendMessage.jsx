@@ -8,12 +8,16 @@ const SendMessage = ({ interviewId }) => {
 
   const handleSend = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
+
+    const input = {
+      sender: "interviewee",
+      message: content,
+      messageInterviewId: interviewId,
+      direction: "outgoing"
+    }
+    
     try {
-      const input = {
-        sender: "interviewee",
-        message: content,
-        messageInterviewId: interviewId
-      }
       const result = await API.graphql(
         graphqlOperation(createMessage, { input })
       );

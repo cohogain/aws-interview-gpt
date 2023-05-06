@@ -135,6 +135,7 @@ export const listMessages = /* GraphQL */ `
         id
         message
         sender
+        direction
       }
       nextToken
     }

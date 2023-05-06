@@ -239,6 +239,7 @@ export const createMessage = /* GraphQL */ `
       message
       sender
       messageInterviewId
+      direction
     }
   }
 `;

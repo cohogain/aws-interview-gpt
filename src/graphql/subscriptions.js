@@ -246,13 +246,12 @@ export const onDeleteMessage = /* GraphQL */ `
 `;
 
 export const onCreateMessage = /* GraphQL */ `
-  subscription OnCreateMessage {
+  subscription OnCreateMessage{
     onCreateMessage {
-      id
       sender
       message
-      createdAt
-      updatedAt
+      messageInterviewId
+      direction
     }
   }
 `;

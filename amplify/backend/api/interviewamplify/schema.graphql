@@ -8,6 +8,7 @@ input CreateMessageInput {
 	id: ID
 	sender: String!
 	message: String!
+	direction: String!
 	ModelSubscriptionMessageFilterInput: ID
 }
 
@@ -41,7 +42,8 @@ type Message @model {
 	id: ID!
 	sender: String!
 	messageInterviewId: ID!
-	content: String!
+	message: String!
+	direction: String!
 	createdAt: AWSDateTime!
 	updatedAt: AWSDateTime!
 }
@@ -291,7 +293,7 @@ type Mutation {
 	createInterview(input: CreateInterviewInput!, condition: ModelInterviewConditionInput): Interview
 	updateInterview(input: UpdateInterviewInput!, condition: ModelInterviewConditionInput): Interview
 	deleteInterview(input: DeleteInterviewInput!, condition: ModelInterviewConditionInput): Interview
-	createMessage(input: CreateMessageInput!, condition: ModelMessageConditionInput): Message
+	createMessage(input: CreateMessageInput!): Message
 	updateMessage(input: UpdateMessageInput!, condition: ModelMessageConditionInput): Message
 	deleteMessage(input: DeleteMessageInput!, condition: ModelMessageConditionInput): Message
 }
@@ -326,7 +328,7 @@ type Subscription {
 		@aws_subscribe(mutations: ["updateInterview"])
 	onDeleteInterview(filter: ModelSubscriptionInterviewFilterInput): Interview
 		@aws_subscribe(mutations: ["deleteInterview"])
-	onCreateMessage(filter: ModelSubscriptionMessageFilterInput): Message
+	onCreateMessage: Message
 		@aws_subscribe(mutations: ["createMessage"])
 	onUpdateMessage(filter: ModelSubscriptionMessageFilterInput): Message
 		@aws_subscribe(mutations: ["updateMessage"])
@@ -343,6 +345,7 @@ input UpdateInterviewInput {
 input UpdateMessageInput {
 	id: ID!
 	sender: String
+	direction: String
 	content: String
 	interviewMessageId: ID
 }
