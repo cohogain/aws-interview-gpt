@@ -3,6 +3,7 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { listMessages } from '../graphql/queries';
 import { onCreateMessage } from '../graphql/subscriptions';
 import { MessagesList, SendMessage } from '../components';
+import axios from 'axios';
 
 const Interview = () => {
     const [messages, setMessages] = useState([{sender: "user", message: "great"}]);
@@ -16,6 +17,7 @@ const Interview = () => {
     useEffect(() => {
         // Subscribe to creation of message
         const subscription = API.graphql(
+            // subscribe to outgoing messages
             graphqlOperation(onCreateMessage, { interviewId })
             ).subscribe({
             next: ({ value }) => {
@@ -23,7 +25,6 @@ const Interview = () => {
                 ...messages,
                 value.data.onCreateMessage,
                 ]);
-                console.log(value)
             },
             error: (error) => console.warn(error),
         });
@@ -33,6 +34,12 @@ const Interview = () => {
           };
     }, [messages]);
 
+    const generateResponse = async () => {
+        await axios.post(
+            'https://jjc4isu7lbozovh3wqyfgjjepe0scbdk.lambda-url.eu-west-1.on.aws/',
+            { "model": "gpt-3.5-turbo", "messages": messages }
+          );
+    };
 
     const fetchMessages = async () => {
         try {
