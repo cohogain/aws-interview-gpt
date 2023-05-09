@@ -4,6 +4,7 @@ import { listMessages } from '../graphql/queries';
 import { onCreateMessage } from '../graphql/subscriptions';
 import { MessagesList, SendMessage } from '../components';
 import axios from 'axios';
+import awsmobile from './aws-exports';
 
 const Interview = () => {
     const [messages, setMessages] = useState([{sender: "user", message: "great"}]);
@@ -36,7 +37,7 @@ const Interview = () => {
 
     const generateResponse = async () => {
         await axios.post(
-            'https://jjc4isu7lbozovh3wqyfgjjepe0scbdk.lambda-url.eu-west-1.on.aws/',
+            awsmobile.aws_interviewgpt_lambda,
             { "model": "gpt-3.5-turbo", "messages": messages }
           );
     };

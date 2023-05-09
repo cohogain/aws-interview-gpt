@@ -41,37 +41,37 @@ export const listProfiles = /* GraphQL */ `
     }
   }
 `;
-export const getInterview = /* GraphQL */ `
-  query GetInterview($id: ID!) {
-    getInterview(id: $id) {
-      id
-      title
-      profile {
-        id
-        name
-        interviews {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      message {
-        items {
-          id
-          sender
-          message
-          createdAt
-          updatedAt
-          interviewMessageId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      profileInterviewsId
-    }
-  }
-`;
+// export const getInterview = /* GraphQL */ `
+//   query GetInterview($id: ID!) {
+//     getInterview(id: $id) {
+//       id
+//       title
+//       profile {
+//         id
+//         name
+//         interviews {
+//           nextToken
+//         }
+//         createdAt
+//         updatedAt
+//       }
+//       message {
+//         items {
+//           id
+//           sender
+//           message
+//           createdAt
+//           updatedAt
+//           interviewMessageId
+//         }
+//         nextToken
+//       }
+//       createdAt
+//       updatedAt
+//       profileInterviewsId
+//     }
+//   }
+// `;
 export const listInterviews = /* GraphQL */ `
   query ListInterviews(
     $filter: ModelInterviewFilterInput
