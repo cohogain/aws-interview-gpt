@@ -4,7 +4,7 @@ import { listMessages } from '../graphql/queries';
 import { onCreateMessage } from '../graphql/subscriptions';
 import { MessagesList, SendMessage } from '../components';
 import axios from 'axios';
-import awsmobile from './aws-exports';
+import awsmobile from '../aws-exports';
 
 const Interview = () => {
     const [messages, setMessages] = useState([{sender: "user", message: "great"}]);
