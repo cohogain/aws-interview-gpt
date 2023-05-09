@@ -309,7 +309,6 @@ type Profile @model {
 type Query {
 	getProfile(id: ID!): Profile
 	listProfiles(filter: ModelProfileFilterInput, limit: Int, nextToken: String): ModelProfileConnection
-	getInterview(id: ID!): Interview
 	listInterviews(filter: ModelInterviewFilterInput, limit: Int, nextToken: String): ModelInterviewConnection
 	getMessage(id: ID!): Message
 	listMessages(filter: ModelMessageFilterInput, limit: Int, nextToken: String): ModelMessageConnection
