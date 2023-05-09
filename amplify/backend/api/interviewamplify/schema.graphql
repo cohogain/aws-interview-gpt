@@ -33,7 +33,6 @@ type Interview @model {
 	id: ID!
 	title: String!
 	profileInterviewsId: ID!
-	messages(sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMessageConnection
 	createdAt: AWSDateTime!
 	updatedAt: AWSDateTime!
 }
@@ -301,7 +300,6 @@ type Mutation {
 type Profile @model {
 	id: ID!
 	name: String!
-	interviews(sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelInterviewConnection
 	createdAt: AWSDateTime!
 	updatedAt: AWSDateTime!
 }
