@@ -6,7 +6,6 @@
     "@aws-amplify/ui-react": "^4.6.1",
     "@chatscope/chat-ui-kit-react": "^1.10.1",
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "apollo-client": "^2.6.10",
     "aws-amplify": "^5.2.0",
