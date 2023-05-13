@@ -6,6 +6,7 @@ import ReactDOM from "react-dom/client";
 import Client from 'aws-appsync';
 import { ApolloProvider } from 'react-apollo';
 import { Rehydrated } from 'aws-appsync-react';
+import ContextProvider from "./context/ContextProvider";
 
 const client = new Client({
   url: awsmobile.aws_appsync_graphqlEndpoint,
@@ -18,9 +19,11 @@ const client = new Client({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ApolloProvider client={client}>
-    <Rehydrated>
-      <App />
-    </Rehydrated>
-  </ApolloProvider>
+  <ContextProvider>
+    <ApolloProvider client={client}>
+      <Rehydrated>
+        <App />
+      </Rehydrated>
+    </ApolloProvider>
+  </ContextProvider>
 );

@@ -5,8 +5,10 @@
 // import Register from './Register';
 // import Login from './Login';
 // import InterviewDashboard from './InterviewDashboard';
-import CreateProfile from './CreateProfile';
+import Resume from './Resume';
 import Interview from './Interview';
+import Home from './Home';
+
 export {
     // Home,
     // TailorResume,
@@ -15,6 +17,7 @@ export {
     // Register,
     // Login,
     // InterviewDashboard
-    CreateProfile,
-    Interview
+    Resume,
+    Interview,
+    Home
 };
