@@ -1,15 +1,23 @@
 {
   "api": {
     "interviewamplify": {
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "interviewamplify271f62f6"
+        }
+      ],
       "output": {
         "authConfig": {
           "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
-            },
-            "authenticationType": "API_KEY"
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authinterviewamplify271f62f6"
+            }
           }
         }
       },

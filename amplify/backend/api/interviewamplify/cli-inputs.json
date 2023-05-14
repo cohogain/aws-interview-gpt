@@ -4,8 +4,10 @@
     "apiName": "interviewamplify",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "API_KEY",
-      "expirationTime": 7
-    }
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authinterviewamplify271f62f6"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
   }
 }
