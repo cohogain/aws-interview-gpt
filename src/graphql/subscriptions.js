@@ -246,11 +246,10 @@ export const onDeleteMessage = /* GraphQL */ `
 `;
 
 export const onCreateMessage = /* GraphQL */ `
-  subscription OnCreateMessage{
-    onCreateMessage {
+  subscription OnCreateMessage($filter: ModelSubscriptionMessageFilterInput) {
+    onCreateMessage(filter: $filter) {
       sender
       message
-      messageInterviewId
       direction
     }
   }

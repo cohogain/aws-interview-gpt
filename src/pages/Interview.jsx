@@ -5,6 +5,8 @@ import { onCreateMessage } from '../graphql/subscriptions';
 import { MessagesList, SendMessage } from '../components';
 import axios from 'axios';
 import awsmobile from '../aws-exports';
+import { Auth } from 'aws-amplify';
+
 
 const Interview = () => {
     const [messages, setMessages] = useState([{sender: "user", message: "great"}]);
@@ -16,10 +18,13 @@ const Interview = () => {
       }, []);
 
     useEffect(() => {
+        const filter = {
+            messageInterviewId: {eq: interviewId},
+        }
         // Subscribe to creation of message
         const subscription = API.graphql(
             // subscribe to outgoing messages
-            graphqlOperation(onCreateMessage, { interviewId })
+            graphqlOperation(onCreateMessage, {filter})
             ).subscribe({
             next: ({ value }) => {
                 setMessages((messages) => [
@@ -36,17 +41,22 @@ const Interview = () => {
     }, [messages]);
 
     const generateResponse = async () => {
-        await axios.post(
+        console.log("called")
+        const result = await axios.post(
             awsmobile.aws_interviewgpt_lambda,
             { "model": "gpt-3.5-turbo", "messages": messages }
-          );
+        );
+        console.log(result)
     };
 
     const fetchMessages = async () => {
+        const filter = {
+            messageInterviewId: {eq: interviewId},
+        }
         try {
             const result = await API.graphql(
                 graphqlOperation(listMessages, {
-                    sortDirection: 'ASC'
+                    filter,
                 })
             );
             console.log(result)

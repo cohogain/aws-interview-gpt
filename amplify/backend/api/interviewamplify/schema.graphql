@@ -6,7 +6,7 @@ type Interview @model @auth(rules: [{ allow: owner}]) @aws_cognito_user_pools{
 	updatedAt: AWSDateTime!
 }
 
-type Message @model @auth(rules: [{ allow: owner}]) @aws_cognito_user_pools{
+type Message @model (subscriptions: { level: public }) @auth(rules: [{ allow: owner}]) @aws_cognito_user_pools{
 	id: ID!
 	sender: String!
 	messageInterviewId: ID!

@@ -129,8 +129,8 @@ export const getMessage = /* GraphQL */ `
 `;
 
 export const listMessages = /* GraphQL */ `
-  query ListMessages {
-    listMessages {
+  query ListMessages($filter: ModelMessageFilterInput!) { 
+    listMessages(filter: $filter) {
       items {
         id
         message
