@@ -1,4 +1,4 @@
-type Interview @model @aws_cognito_user_pools{
+type Interview @model @auth(rules: [{ allow: owner}]) @aws_cognito_user_pools{
 	id: ID!
 	title: String!
 	profileInterviewsId: ID!
@@ -6,7 +6,7 @@ type Interview @model @aws_cognito_user_pools{
 	updatedAt: AWSDateTime!
 }
 
-type Message @model @aws_cognito_user_pools{
+type Message @model @auth(rules: [{ allow: owner}]) @aws_cognito_user_pools{
 	id: ID!
 	sender: String!
 	messageInterviewId: ID!
@@ -16,7 +16,7 @@ type Message @model @aws_cognito_user_pools{
 	updatedAt: AWSDateTime!
 }
 
-type Profile @model @aws_cognito_user_pools{
+type Profile @model @auth(rules: [{ allow: owner}]) @aws_cognito_user_pools{
 	id: ID!
 	name: String!
 	createdAt: AWSDateTime!
