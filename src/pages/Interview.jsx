@@ -31,6 +31,7 @@ const Interview = () => {
                 ...messages,
                 value.data.onCreateMessage,
                 ]);
+                generateResponse();
             },
             error: (error) => console.warn(error),
         });
