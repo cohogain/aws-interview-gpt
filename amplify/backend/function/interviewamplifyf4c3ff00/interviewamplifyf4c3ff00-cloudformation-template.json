@@ -80,7 +80,7 @@
         },
         "Runtime": "python3.9",
         "Layers": [
-          "interviewamplifyopenaipython39layer-dev"
+          "interviewamplifyopenailayer-dev"
         ],
         "Timeout": 25
       }

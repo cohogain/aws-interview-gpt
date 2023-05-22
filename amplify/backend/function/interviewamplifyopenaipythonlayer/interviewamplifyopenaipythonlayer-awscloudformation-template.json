@@ -45,7 +45,7 @@
         },
         "LayerName": {
           "Fn::Sub": [
-            "interviewamplifyopenaipython39layer-${env}",
+            "interviewamplifyopenailayer-${env}",
             {
               "env": {
                 "Ref": "env"
