@@ -17,12 +17,18 @@
     },
     "runtimes": {
       "Type": "List<String>"
+    },
+    "architectures": {
+      "Type": "List<String>"
     }
   },
   "Resources": {
     "LambdaLayerVersion1b62cc56": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
+        "CompatibleArchitectures": {
+          "Ref": "architectures"
+        },
         "CompatibleRuntimes": {
           "Ref": "runtimes"
         },
