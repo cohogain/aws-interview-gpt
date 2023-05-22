@@ -3,7 +3,7 @@
     "python3.9"
   ],
   "architectures": [
-    "x86"
+    "x86_64"
   ],
   "s3Key": "openai_lambda_layer.zip",
   "deploymentBucketName": "interviewgptbucket",
