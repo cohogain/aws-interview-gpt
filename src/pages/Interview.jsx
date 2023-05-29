@@ -3,7 +3,6 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { listMessages } from '../graphql/queries';
 import { onCreateMessage } from '../graphql/subscriptions';
 import { MessagesList, SendMessage } from '../components';
-import axios from 'axios';
 import awsmobile from '../aws-exports';
 import { Auth } from 'aws-amplify';
 
@@ -43,30 +42,30 @@ const Interview = () => {
 
     const generateResponse = async () => {
         console.log("called")
-        const result = await axios.post(
-            awsmobile.aws_interviewgpt_lambda,
-            {
-                "model": "gpt-3.5-turbo",
-                "messages": [
-                  {
-                    "role": "system",
-                    "content": "You are a helpful assistant."
-                  },
-                  {
-                    "role": "user",
-                    "content": "Who won the world series in 2020?"
-                  },
-                  {
-                    "role": "assistant",
-                    "content": "The Los Angeles Dodgers won the World Series in 2020."
-                  },
-                  {
-                    "role": "user",
-                    "content": "Where was it played?"
-                  }
-                ]
-              }
-        );
+        const myInit = {
+            body: {
+              model: 'gpt-3.5-turbo',
+              messages: [
+                {
+                  role: 'system',
+                  content: 'You are a helpful assistant.'
+                },
+                {
+                  role: 'user',
+                  content: 'Who won the world series in 2020?'
+                },
+                {
+                  role: 'assistant',
+                  content: 'The Los Angeles Dodgers won the World Series in 2020.'
+                },
+                {
+                  role: 'user',
+                  content: 'Where was it played?'
+                }
+              ]
+            } 
+         };
+        const result = await API.post("interviewAPI", "/chat", myInit);
         console.log(result)
     };
 
