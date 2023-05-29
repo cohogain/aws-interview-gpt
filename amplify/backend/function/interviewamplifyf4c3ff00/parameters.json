@@ -1,1 +1,4 @@
-{}
+{
+    "s3Key": "interview_chat_lamdba.zip",
+    "deploymentBucketName": "interviewgptbucket"
+}
