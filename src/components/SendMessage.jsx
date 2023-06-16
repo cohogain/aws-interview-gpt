@@ -1,31 +1,22 @@
-// Components/SendMessage.js
-import React, { useState } from 'react'
-import { createMessage } from '../graphql/mutations';
-import { API, graphqlOperation } from 'aws-amplify';
+import React, { useState } from 'react';
+import { createMessage } from '../services/messageService';
 
-const SendMessage = ({ interviewId }) => {
+const SendMessage = ({ interviewId, sender, direction }) => {
   const [content, setContent] = useState('');
 
   const handleSend = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-
-    const input = {
-      sender: "interviewee",
+    
+    const messageData = {
+      sender: sender,
       message: content,
       messageInterviewId: interviewId,
-      direction: "outgoing"
-    }
+      direction: direction
+    };
     
-    try {
-      const result = await API.graphql(
-        graphqlOperation(createMessage, { input })
-      );
-      console.log(result)
-      setContent('');
-    } catch (error) {
-      console.error('Error creating message:', error);
-    }
+    await createMessage(messageData);
+    setContent('');
   };
 
   return (
@@ -38,7 +29,7 @@ const SendMessage = ({ interviewId }) => {
         className="message-input"
       />
     </form>
-  )
+  );
 };
 
 export default SendMessage;

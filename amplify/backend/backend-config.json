@@ -1,19 +1,5 @@
 {
   "api": {
-    "interviewAPI": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "interviewamplifyf4c3ff00"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "API Gateway"
-    },
     "interviewamplify": {
       "dependsOn": [
         {

@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { API, graphqlOperation } from 'aws-amplify';
 import { listMessages } from '../graphql/queries';
 import { onCreateMessage } from '../graphql/subscriptions';
 import { MessagesList, SendMessage } from '../components';
+import axios from 'axios';
 import awsmobile from '../aws-exports';
 import { Auth } from 'aws-amplify';
-
+import { createMessage } from '../services/messageService';
 
 const Interview = () => {
     const [messages, setMessages] = useState([{sender: "user", message: "great"}]);
@@ -18,7 +19,7 @@ const Interview = () => {
 
     useEffect(() => {
         const filter = {
-            messageInterviewId: {eq: interviewId},
+            messageInterviewId: {eq: interviewId}
         }
         // Subscribe to creation of message
         const subscription = API.graphql(
@@ -26,11 +27,19 @@ const Interview = () => {
             graphqlOperation(onCreateMessage, {filter})
             ).subscribe({
             next: ({ value }) => {
-                setMessages((messages) => [
-                ...messages,
-                value.data.onCreateMessage,
-                ]);
-                generateResponse();
+                setMessages((messages) => {
+                    const newMessage = value.data.onCreateMessage;
+                    const updatedMessages = [...messages, newMessage];
+    
+                    // Check the sender and conditionally call generateResponse with updated messages array
+                    if (newMessage.sender !== "ChatGPT") {
+                        generateResponse(updatedMessages);
+                    }
+    
+                    // Return updated messages array for state update
+                    return updatedMessages;
+                });
+    
             },
             error: (error) => console.warn(error),
         });
@@ -40,33 +49,47 @@ const Interview = () => {
           };
     }, [messages]);
 
-    const generateResponse = async () => {
-        console.log("called")
-        const myInit = {
-            body: {
-              model: 'gpt-3.5-turbo',
-              messages: [
-                {
-                  role: 'system',
-                  content: 'You are a helpful assistant.'
-                },
-                {
-                  role: 'user',
-                  content: 'Who won the world series in 2020?'
-                },
-                {
-                  role: 'assistant',
-                  content: 'The Los Angeles Dodgers won the World Series in 2020.'
-                },
-                {
-                  role: 'user',
-                  content: 'Where was it played?'
-                }
-              ]
-            } 
-         };
-        const result = await API.post("interviewAPI", "/chat", myInit);
-        console.log(result)
+    const generateResponse = async (chatMessages) => {
+        let apiMessages = [];
+
+        if (chatMessages != null) {
+          apiMessages = chatMessages.map((messageObject) => {
+            let role = "";
+            if (messageObject.sender === "ChatGPT") {
+              role = "assistant";
+            } else {
+              role = messageObject.sender;
+            }
+            return { role: role, content: messageObject.message}
+          });
+        }
+
+        const payload = {
+            model: 'gpt-3.5-turbo',
+            messages: apiMessages
+        };
+
+        try {
+            console.log(payload)
+            const response = await axios.post('https://8v9hz3gal8.execute-api.eu-west-1.amazonaws.com/interviewGPT', payload, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+            });
+        
+            console.log(response.data);
+            const messageData = {
+                sender: "ChatGPT",
+                message: response.data,
+                messageInterviewId: interviewId,
+                direction: "incoming"
+            };
+              
+            await createMessage(messageData);
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     };
 
     const fetchMessages = async () => {
@@ -93,6 +116,8 @@ const Interview = () => {
             />
             <SendMessage 
                 interviewId={interviewId}
+                sender={"user"}
+                direction={"outgoing"}
             />
         </div>
     );
