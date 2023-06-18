@@ -22,3 +22,12 @@ type Profile @model @auth(rules: [{ allow: owner}]) @aws_cognito_user_pools{
 	createdAt: AWSDateTime!
 	updatedAt: AWSDateTime!
 }
+
+type Query {
+	getInterview(id: ID!): Interview
+	listInterviews(filter: ModelInterviewFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelInterviewConnection
+	getMessage(id: ID!): Message
+	listMessages(filter: ModelMessageFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMessageConnection
+	getProfile(id: ID!): Profile
+	listProfiles(filter: ModelProfileFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelProfileConnection
+}
