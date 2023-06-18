@@ -133,7 +133,6 @@ export const interviewsByDate = /* GraphQL */ `
 export const messagesByDate = /* GraphQL */ `
   query MessagesByDate(
     $type: String!
-    $createdAt: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelMessageFilterInput
     $limit: Int
@@ -141,7 +140,6 @@ export const messagesByDate = /* GraphQL */ `
   ) {
     messagesByDate(
       type: $type
-      createdAt: $createdAt
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit

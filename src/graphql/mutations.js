@@ -50,17 +50,12 @@ export const deleteInterview = /* GraphQL */ `
   }
 `;
 export const createMessage = /* GraphQL */ `
-  mutation CreateMessage(
-    $input: CreateMessageInput!
-    $condition: ModelMessageConditionInput
-  ) {
+  mutation CreateMessage($input: CreateMessageInput!) {
     createMessage(input: $input) {
-      id
+      message
       sender
       messageInterviewId
-      message
       direction
-      createdAt
     }
   }
 `;

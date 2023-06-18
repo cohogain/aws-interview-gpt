@@ -3,12 +3,12 @@ import { createMessage as createMessageMutation } from '../graphql/mutations';
 
 export const createMessage = async ({ sender, message, messageInterviewId, direction }) => {
   const input = {
-    sender,
-    message,
-    messageInterviewId,
-    direction
+    sender: sender,
+    message: message,
+    messageInterviewId: messageInterviewId,
+    direction: direction
   };
-
+  console.log(input)
   try {
     const result = await API.graphql(
       graphqlOperation(createMessageMutation, { input })

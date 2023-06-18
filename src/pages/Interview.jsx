@@ -105,11 +105,13 @@ const Interview = () => {
         try {
             const result = await API.graphql(
                 graphqlOperation(messagesByDate, {
-                    filter, sortDirection: 'DESC'
+                    type: "Message",
+                    filter,
+                    sortDirection: 'DESC'
                 })
             );
             console.log(result)
-            setMessages(result.data.listMessages.items);
+            setMessages(result.data.messagesByDate.items);
         } catch (error) {
             console.error('Error fetching messages:', error);
         }
