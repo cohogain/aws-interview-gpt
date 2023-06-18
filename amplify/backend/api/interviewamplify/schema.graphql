@@ -35,7 +35,7 @@ input DeleteProfileInput {
 	id: ID!
 }
 
-type Interview @aws_cognito_user_pools {
+type Interview @model @aws_cognito_user_pools {
 	id: ID!
 	title: String!
 	profileInterviewsId: ID!
@@ -44,7 +44,7 @@ type Interview @aws_cognito_user_pools {
 	owner: String
 }
 
-type Message @aws_cognito_user_pools {
+type Message @model @aws_cognito_user_pools {
 	id: ID!
 	sender: String!
 	messageInterviewId: ID!
@@ -316,7 +316,7 @@ input ModelSubscriptionStringInput {
 	notIn: [String]
 }
 
-type Profile @aws_cognito_user_pools {
+type Profile @model @aws_cognito_user_pools {
 	id: ID!
 	name: String!
 	createdAt: AWSDateTime!
