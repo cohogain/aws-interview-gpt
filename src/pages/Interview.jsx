@@ -12,7 +12,11 @@ const Interview = () => {
     const [messages, setMessages] = useState([{sender: "user", message: "great"}]);
     const [isTyping, setIsTyping] = useState(false);
     const [interviewId, setInterviewId] = useState("a2ceea1a-c63a-43b9-a040-1528247e9403")
-
+    const systemMessage = { 
+        "role": "system", "content": `You are a job interviewer. You will interview candidates for the role they provide and ask then questions \
+            on their past experiences.
+        """`
+      };
     useEffect(() => {
         fetchMessages();
       }, []);
@@ -66,11 +70,13 @@ const Interview = () => {
 
         const payload = {
             "model": 'gpt-3.5-turbo',
-            "messages": apiMessages
+            "messages": [
+                systemMessage,  // The system message DEFINES the logic of our chatGPT
+                ...apiMessages // The messages from our chat with ChatGPT
+              ]
         };
 
         try {
-            console.log(payload)
             const response = await axios.post('https://8v9hz3gal8.execute-api.eu-west-1.amazonaws.com/interviewGPT', payload, {
             headers: {
                 'Content-Type': 'application/json',
