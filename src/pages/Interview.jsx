@@ -65,8 +65,8 @@ const Interview = () => {
         }
 
         const payload = {
-            model: 'gpt-3.5-turbo',
-            messages: apiMessages
+            "model": 'gpt-3.5-turbo',
+            "messages": apiMessages
         };
 
         try {
