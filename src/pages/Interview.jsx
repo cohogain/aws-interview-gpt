@@ -104,7 +104,7 @@ const Interview = () => {
         }
         try {
             const result = await API.graphql(
-                graphqlOperation(listMessages, {
+                graphqlOperation(messagesByDate, {
                     filter, sortDirection: 'DESC'
                 })
             );

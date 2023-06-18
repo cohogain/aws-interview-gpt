@@ -54,16 +54,13 @@ export const createMessage = /* GraphQL */ `
     $input: CreateMessageInput!
     $condition: ModelMessageConditionInput
   ) {
-    createMessage(input: $input, condition: $condition) {
+    createMessage(input: $input) {
       id
       sender
       messageInterviewId
       message
       direction
-      type
       createdAt
-      updatedAt
-      owner
     }
   }
 `;
