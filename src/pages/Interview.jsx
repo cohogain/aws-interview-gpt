@@ -40,6 +40,7 @@ const Interview = () => {
                         generateResponse(updatedMessages);
                     }
     
+                    setIsTyping(false);
                     // Return updated messages array for state update
                     return updatedMessages;
                 });
@@ -55,7 +56,7 @@ const Interview = () => {
 
     const generateResponse = async (chatMessages) => {
         let apiMessages = [];
-
+        setIsTyping(true);
         if (chatMessages != null) {
           apiMessages = chatMessages.map((messageObject) => {
             let role = "";
@@ -83,7 +84,6 @@ const Interview = () => {
             }
             });
         
-            console.log(response.data);
             const messageData = {
                 sender: "ChatGPT",
                 message: response.data,
