@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { API, graphqlOperation } from 'aws-amplify';
-import { listMessages } from '../graphql/queries';
+import { messagesByDate } from '../graphql/queries';
 import { onCreateMessage } from '../graphql/subscriptions';
 import { MessagesList, SendMessage } from '../components';
 import axios from 'axios';
