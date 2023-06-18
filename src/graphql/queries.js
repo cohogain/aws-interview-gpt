@@ -131,9 +131,8 @@ export const getMessage = /* GraphQL */ `
 export const listMessages = /* GraphQL */ `
   query ListMessages(
     $filter: ModelMessageFilterInput!
-    $sortDirection: ModelSortDirection
     ) { 
-    listMessages(filter: $filter, sortDirection: $sortDirection) {
+    listMessages(filter: $filter, sortDirection: 'DESC') {
       items {
         id
         message
