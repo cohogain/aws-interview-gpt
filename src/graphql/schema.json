@@ -184,6 +184,15 @@
             },
             "defaultValue" : null
           }, {
+            "name" : "sortDirection",
+            "description" : null,
+            "type" : {
+              "kind" : "ENUM",
+              "name" : "ModelSortDirection",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          },{
             "name" : "nextToken",
             "description" : null,
             "type" : {
