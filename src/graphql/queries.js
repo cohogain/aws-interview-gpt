@@ -1,74 +1,16 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getProfile = /* GraphQL */ `
-  query GetProfile($id: ID!) {
-    getProfile(id: $id) {
-      id
-      name
-      interviews {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          profileInterviewsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listProfiles = /* GraphQL */ `
-  query ListProfiles(
-    $filter: ModelProfileFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listProfiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        interviews {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
 export const getInterview = /* GraphQL */ `
   query GetInterview($id: ID!) {
     getInterview(id: $id) {
       id
       title
-      profile {
-        id
-        name
-        interviews {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      message {
-        items {
-          id
-          sender
-          message
-          createdAt
-          updatedAt
-          interviewMessageId
-        }
-        nextToken
-      }
+      profileInterviewsId
+      type
       createdAt
       updatedAt
-      profileInterviewsId
+      owner
     }
   }
 `;
@@ -82,18 +24,11 @@ export const listInterviews = /* GraphQL */ `
       items {
         id
         title
-        profile {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        message {
-          nextToken
-        }
+        profileInterviewsId
+        type
         createdAt
         updatedAt
-        profileInterviewsId
+        owner
       }
       nextToken
     }
@@ -104,40 +39,124 @@ export const getMessage = /* GraphQL */ `
     getMessage(id: $id) {
       id
       sender
-      interview {
-        id
-        title
-        profile {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        message {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        profileInterviewsId
-      }
+      messageInterviewId
       message
+      direction
+      type
       createdAt
       updatedAt
-      interviewMessageId
+      owner
     }
   }
 `;
-
 export const listMessages = /* GraphQL */ `
   query ListMessages(
-    $filter: ModelMessageFilterInput!
-    ) { 
-    listMessages(filter: $filter, sortDirection: "DESC") {
+    $filter: ModelMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        message
         sender
+        messageInterviewId
+        message
         direction
+        type
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getProfile = /* GraphQL */ `
+  query GetProfile($id: ID!) {
+    getProfile(id: $id) {
+      id
+      name
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listProfiles = /* GraphQL */ `
+  query ListProfiles(
+    $filter: ModelProfileFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProfiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const interviewsByDate = /* GraphQL */ `
+  query InterviewsByDate(
+    $type: String!
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelInterviewFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    interviewsByDate(
+      type: $type
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        title
+        profileInterviewsId
+        type
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const messagesByDate = /* GraphQL */ `
+  query MessagesByDate(
+    $type: String!
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    messagesByDate(
+      type: $type
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        sender
+        messageInterviewId
+        message
+        direction
+        type
+        createdAt
+        updatedAt
+        owner
       }
       nextToken
     }

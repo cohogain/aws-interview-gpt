@@ -1,256 +1,147 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateProfile = /* GraphQL */ `
-  subscription OnCreateProfile($filter: ModelSubscriptionProfileFilterInput) {
-    onCreateProfile(filter: $filter) {
-      id
-      name
-      interviews {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          profileInterviewsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateProfile = /* GraphQL */ `
-  subscription OnUpdateProfile($filter: ModelSubscriptionProfileFilterInput) {
-    onUpdateProfile(filter: $filter) {
-      id
-      name
-      interviews {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          profileInterviewsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteProfile = /* GraphQL */ `
-  subscription OnDeleteProfile($filter: ModelSubscriptionProfileFilterInput) {
-    onDeleteProfile(filter: $filter) {
-      id
-      name
-      interviews {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          profileInterviewsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateInterview = /* GraphQL */ `
   subscription OnCreateInterview(
     $filter: ModelSubscriptionInterviewFilterInput
+    $owner: String
   ) {
-    onCreateInterview(filter: $filter) {
+    onCreateInterview(filter: $filter, owner: $owner) {
       id
       title
-      profile {
-        id
-        name
-        interviews {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      message {
-        items {
-          id
-          sender
-          content
-          createdAt
-          updatedAt
-          interviewMessageId
-        }
-        nextToken
-      }
+      profileInterviewsId
+      type
       createdAt
       updatedAt
-      profileInterviewsId
+      owner
     }
   }
 `;
 export const onUpdateInterview = /* GraphQL */ `
   subscription OnUpdateInterview(
     $filter: ModelSubscriptionInterviewFilterInput
+    $owner: String
   ) {
-    onUpdateInterview(filter: $filter) {
+    onUpdateInterview(filter: $filter, owner: $owner) {
       id
       title
-      profile {
-        id
-        name
-        interviews {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      message {
-        items {
-          id
-          sender
-          content
-          createdAt
-          updatedAt
-          interviewMessageId
-        }
-        nextToken
-      }
+      profileInterviewsId
+      type
       createdAt
       updatedAt
-      profileInterviewsId
+      owner
     }
   }
 `;
 export const onDeleteInterview = /* GraphQL */ `
   subscription OnDeleteInterview(
     $filter: ModelSubscriptionInterviewFilterInput
+    $owner: String
   ) {
-    onDeleteInterview(filter: $filter) {
+    onDeleteInterview(filter: $filter, owner: $owner) {
       id
       title
-      profile {
-        id
-        name
-        interviews {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      message {
-        items {
-          id
-          sender
-          content
-          createdAt
-          updatedAt
-          interviewMessageId
-        }
-        nextToken
-      }
+      profileInterviewsId
+      type
       createdAt
       updatedAt
-      profileInterviewsId
+      owner
     }
   }
 `;
-export const onCreateMessage1 = /* GraphQL */ `
-  subscription OnCreateMessage($filter: ModelSubscriptionMessageFilterInput) {
-    onCreateMessage(filter: $filter) {
+export const onCreateMessage = /* GraphQL */ `
+  subscription OnCreateMessage(
+    $filter: ModelSubscriptionMessageFilterInput
+    $owner: String
+  ) {
+    onCreateMessage(filter: $filter, owner: $owner) {
       id
       sender
-      interview {
-        id
-        title
-        profile {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        message {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        profileInterviewsId
-      }
-      content
+      messageInterviewId
+      message
+      direction
+      type
       createdAt
       updatedAt
-      interviewMessageId
+      owner
     }
   }
 `;
 export const onUpdateMessage = /* GraphQL */ `
-  subscription OnUpdateMessage($filter: ModelSubscriptionMessageFilterInput) {
-    onUpdateMessage(filter: $filter) {
+  subscription OnUpdateMessage(
+    $filter: ModelSubscriptionMessageFilterInput
+    $owner: String
+  ) {
+    onUpdateMessage(filter: $filter, owner: $owner) {
       id
       sender
-      interview {
-        id
-        title
-        profile {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        message {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        profileInterviewsId
-      }
-      content
+      messageInterviewId
+      message
+      direction
+      type
       createdAt
       updatedAt
-      interviewMessageId
+      owner
     }
   }
 `;
 export const onDeleteMessage = /* GraphQL */ `
-  subscription OnDeleteMessage($filter: ModelSubscriptionMessageFilterInput) {
-    onDeleteMessage(filter: $filter) {
+  subscription OnDeleteMessage(
+    $filter: ModelSubscriptionMessageFilterInput
+    $owner: String
+  ) {
+    onDeleteMessage(filter: $filter, owner: $owner) {
       id
       sender
-      interview {
-        id
-        title
-        profile {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        message {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        profileInterviewsId
-      }
-      content
+      messageInterviewId
+      message
+      direction
+      type
       createdAt
       updatedAt
-      interviewMessageId
+      owner
     }
   }
 `;
-
-export const onCreateMessage = /* GraphQL */ `
-  subscription OnCreateMessage($filter: ModelSubscriptionMessageFilterInput) {
-    onCreateMessage(filter: $filter) {
-      sender
-      message
-      direction
+export const onCreateProfile = /* GraphQL */ `
+  subscription OnCreateProfile(
+    $filter: ModelSubscriptionProfileFilterInput
+    $owner: String
+  ) {
+    onCreateProfile(filter: $filter, owner: $owner) {
+      id
+      name
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateProfile = /* GraphQL */ `
+  subscription OnUpdateProfile(
+    $filter: ModelSubscriptionProfileFilterInput
+    $owner: String
+  ) {
+    onUpdateProfile(filter: $filter, owner: $owner) {
+      id
+      name
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteProfile = /* GraphQL */ `
+  subscription OnDeleteProfile(
+    $filter: ModelSubscriptionProfileFilterInput
+    $owner: String
+  ) {
+    onDeleteProfile(filter: $filter, owner: $owner) {
+      id
+      name
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;

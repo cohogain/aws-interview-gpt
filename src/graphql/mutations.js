@@ -1,75 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createProfile = /* GraphQL */ `
-  mutation CreateProfile(
-    $input: CreateProfileInput!
-    $condition: ModelProfileConditionInput
-  ) {
-    createProfile(input: $input, condition: $condition) {
-      id
-      name
-      interviews {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          profileInterviewsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateProfile = /* GraphQL */ `
-  mutation UpdateProfile(
-    $input: UpdateProfileInput!
-    $condition: ModelProfileConditionInput
-  ) {
-    updateProfile(input: $input, condition: $condition) {
-      id
-      name
-      interviews {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          profileInterviewsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteProfile = /* GraphQL */ `
-  mutation DeleteProfile(
-    $input: DeleteProfileInput!
-    $condition: ModelProfileConditionInput
-  ) {
-    deleteProfile(input: $input, condition: $condition) {
-      id
-      name
-      interviews {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          profileInterviewsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createInterview = /* GraphQL */ `
   mutation CreateInterview(
     $input: CreateInterviewInput!
@@ -78,29 +9,11 @@ export const createInterview = /* GraphQL */ `
     createInterview(input: $input, condition: $condition) {
       id
       title
-      profile {
-        id
-        name
-        interviews {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      message {
-        items {
-          id
-          sender
-          content
-          createdAt
-          updatedAt
-          interviewMessageId
-        }
-        nextToken
-      }
+      profileInterviewsId
+      type
       createdAt
       updatedAt
-      profileInterviewsId
+      owner
     }
   }
 `;
@@ -112,29 +25,11 @@ export const updateInterview = /* GraphQL */ `
     updateInterview(input: $input, condition: $condition) {
       id
       title
-      profile {
-        id
-        name
-        interviews {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      message {
-        items {
-          id
-          sender
-          content
-          createdAt
-          updatedAt
-          interviewMessageId
-        }
-        nextToken
-      }
+      profileInterviewsId
+      type
       createdAt
       updatedAt
-      profileInterviewsId
+      owner
     }
   }
 `;
@@ -146,59 +41,29 @@ export const deleteInterview = /* GraphQL */ `
     deleteInterview(input: $input, condition: $condition) {
       id
       title
-      profile {
-        id
-        name
-        interviews {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      message {
-        items {
-          id
-          sender
-          content
-          createdAt
-          updatedAt
-          interviewMessageId
-        }
-        nextToken
-      }
+      profileInterviewsId
+      type
       createdAt
       updatedAt
-      profileInterviewsId
+      owner
     }
   }
 `;
-export const createMessage1 = /* GraphQL */ `
-  mutation CreateMessage1(
+export const createMessage = /* GraphQL */ `
+  mutation CreateMessage(
     $input: CreateMessageInput!
+    $condition: ModelMessageConditionInput
   ) {
-    createMessage1(input: $input, condition: $condition) {
+    createMessage(input: $input, condition: $condition) {
       id
       sender
-      interview {
-        id
-        title
-        profile {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        message {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        profileInterviewsId
-      }
-      content
+      messageInterviewId
+      message
+      direction
+      type
       createdAt
       updatedAt
-      interviewMessageId
+      owner
     }
   }
 `;
@@ -210,36 +75,73 @@ export const updateMessage = /* GraphQL */ `
     updateMessage(input: $input, condition: $condition) {
       id
       sender
-      interview {
-        id
-        title
-        profile {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        message {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        profileInterviewsId
-      }
-      content
+      messageInterviewId
+      message
+      direction
+      type
       createdAt
       updatedAt
-      interviewMessageId
+      owner
     }
   }
 `;
-export const createMessage = /* GraphQL */ `
-  mutation CreateMessage($input: CreateMessageInput!) {
-    createMessage(input: $input) {
-      message
+export const deleteMessage = /* GraphQL */ `
+  mutation DeleteMessage(
+    $input: DeleteMessageInput!
+    $condition: ModelMessageConditionInput
+  ) {
+    deleteMessage(input: $input, condition: $condition) {
+      id
       sender
       messageInterviewId
+      message
       direction
+      type
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const createProfile = /* GraphQL */ `
+  mutation CreateProfile(
+    $input: CreateProfileInput!
+    $condition: ModelProfileConditionInput
+  ) {
+    createProfile(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateProfile = /* GraphQL */ `
+  mutation UpdateProfile(
+    $input: UpdateProfileInput!
+    $condition: ModelProfileConditionInput
+  ) {
+    updateProfile(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteProfile = /* GraphQL */ `
+  mutation DeleteProfile(
+    $input: DeleteProfileInput!
+    $condition: ModelProfileConditionInput
+  ) {
+    deleteProfile(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;
