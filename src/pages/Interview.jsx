@@ -6,7 +6,7 @@ import { MessagesList, SendMessage } from '../components';
 import axios from 'axios';
 import awsmobile from '../aws-exports';
 import { Auth } from 'aws-amplify';
-import { createMessage } from '../services/messageService';
+import { createMessage as createMessageMutation } from '../graphql/mutations';
 
 const Interview = () => {
     const [messages, setMessages] = useState([{sender: "user", message: "great"}]);
@@ -84,14 +84,24 @@ const Interview = () => {
             }
             });
         
-            const messageData = {
+            const input = {
                 sender: "ChatGPT",
                 message: response.data,
                 messageInterviewId: interviewId,
-                direction: "incoming"
+                direction: "incoming",
+                type: "Message"
             };
               
-            await createMessage(messageData);
+            try {
+                const result = await API.graphql(
+                  graphqlOperation(createMessageMutation, { input })
+                );
+                console.log(result);
+                return result;
+              } catch (error) {
+                console.error('Error creating message:', error);
+                return null;
+              }
 
         } catch (error) {
             console.error('Error fetching data:', error);
