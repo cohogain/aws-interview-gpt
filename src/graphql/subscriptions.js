@@ -52,18 +52,12 @@ export const onDeleteInterview = /* GraphQL */ `
 export const onCreateMessage = /* GraphQL */ `
   subscription OnCreateMessage(
     $filter: ModelSubscriptionMessageFilterInput
-    $owner: String
   ) {
-    onCreateMessage(filter: $filter, owner: $owner) {
-      id
+    onCreateMessage(filter: $filter) {
       sender
       messageInterviewId
       message
       direction
-      type
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;

@@ -146,15 +146,10 @@ export const messagesByDate = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
-        id
         sender
         messageInterviewId
         message
         direction
-        type
-        createdAt
-        updatedAt
-        owner
       }
       nextToken
     }
