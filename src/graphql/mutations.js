@@ -56,6 +56,7 @@ export const createMessage = /* GraphQL */ `
       sender
       messageInterviewId
       direction
+      type
     }
   }
 `;

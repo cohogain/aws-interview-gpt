@@ -21,7 +21,7 @@ type Message
 	messageInterviewId: ID!
 	message: String!
 	direction: String
-	type: String! @index(name: "messagesByDate", queryField: "messagesByDate", sortKeyFields: ["createdAt"])
+	type: String @index(name: "messagesByDate", queryField: "messagesByDate", sortKeyFields: ["createdAt"])
 	createdAt: AWSDateTime!
 	updatedAt: AWSDateTime!
 	owner: String

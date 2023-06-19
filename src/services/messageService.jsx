@@ -6,7 +6,8 @@ export const createMessage = async ({ sender, message, messageInterviewId, direc
     sender: sender,
     message: message,
     messageInterviewId: messageInterviewId,
-    direction: direction
+    direction: direction,
+    type: "Message"
   };
   console.log(input)
   try {
