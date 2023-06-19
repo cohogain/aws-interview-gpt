@@ -34,7 +34,7 @@ const Interview = () => {
                 setMessages((messages) => {
                     const newMessage = value.data.onCreateMessage;
                     const updatedMessages = [...messages, newMessage];
-    
+
                     // Check the sender and conditionally call generateResponse with updated messages array
                     if (newMessage.sender !== "ChatGPT") {
                         generateResponse(updatedMessages);
@@ -117,10 +117,9 @@ const Interview = () => {
                 graphqlOperation(messagesByDate, {
                     type: "Message",
                     filter,
-                    sortDirection: 'DESC'
+                    sortDirection: 'ASC'
                 })
             );
-            console.log(result)
             setMessages(result.data.messagesByDate.items);
         } catch (error) {
             console.error('Error fetching messages:', error);

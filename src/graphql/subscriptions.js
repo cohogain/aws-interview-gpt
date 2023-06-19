@@ -49,13 +49,11 @@ export const onDeleteInterview = /* GraphQL */ `
     }
   }
 `;
+
 export const onCreateMessage = /* GraphQL */ `
-  subscription OnCreateMessage(
-    $filter: ModelSubscriptionMessageFilterInput
-  ) {
+  subscription OnCreateMessage($filter: ModelSubscriptionMessageFilterInput) {
     onCreateMessage(filter: $filter) {
       sender
-      messageInterviewId
       message
       direction
     }
