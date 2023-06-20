@@ -9,7 +9,7 @@ import { Auth } from 'aws-amplify';
 import { createMessage as createMessageMutation } from '../graphql/mutations';
 
 const Interview = () => {
-    const [messages, setMessages] = useState([{sender: "user", message: "great"}]);
+    const [messages, setMessages] = useState([]);
     const [isTyping, setIsTyping] = useState(false);
     const [interviewId, setInterviewId] = useState("a2ceea1a-c63a-43b9-a040-1528247e9403")
     const systemMessage = { 

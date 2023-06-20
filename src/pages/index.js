@@ -8,6 +8,7 @@
 import Resume from './Resume';
 import Interview from './Interview';
 import Home from './Home';
+import InterviewStart from './InterviewStart';
 
 export {
     // Home,
@@ -19,5 +20,6 @@ export {
     // InterviewDashboard
     Resume,
     Interview,
-    Home
+    Home,
+    InterviewStart
 };

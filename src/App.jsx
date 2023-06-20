@@ -3,7 +3,7 @@ import awsmobile from './aws-exports';
 import '@aws-amplify/ui-react/styles.css';
 import React, { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Resume, Interview, Home } from './pages';
+import { Resume, Interview, Home, InterviewStart } from './pages';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { RequireAuth } from './RequireAuth';
 import { Sidebar } from './components';
@@ -26,7 +26,7 @@ const App = () => {
                     path="/interview"
                     element={
                       <RequireAuth>
-                        <Interview />
+                        <InterviewStart />
                       </RequireAuth>
                     }
                   />
