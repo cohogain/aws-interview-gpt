@@ -14,7 +14,7 @@ type Interview
 
 type Message 
   @aws_cognito_user_pools
-  @model
+  @model (subscriptions: { level: public })
   @auth(rules: [{ allow: owner, operations: [create, delete, update, read] }]) {
 	id: ID!
 	sender: String!

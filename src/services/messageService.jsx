@@ -14,7 +14,6 @@ export const createMessage = async ({ sender, message, messageInterviewId, direc
     const result = await API.graphql(
       graphqlOperation(createMessageMutation, { input })
     );
-    console.log(result);
     return result;
   } catch (error) {
     console.error('Error creating message:', error);
