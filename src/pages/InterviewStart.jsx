@@ -21,7 +21,7 @@ const InterviewDashboard = () => {
     return (
         <div className='mt-12'>
           {/* <h1 className="flex justify-center text-lg font-medium text-gray-700 mb-3 mt-10">Customize Interview</h1>  */}
-          <h2 className="flex justify-center mt-10 text-lg font-medium text-gray-700 mb-3">Choose Your Gender ...</h2> 
+          <h2 className="flex justify-center mt-10 text-lg font-medium text-gray-700 mb-3">Choose Your Job Title ...</h2> 
             <div className="flex relative flex-wrap pd-20 lg:flex-nowrap justify-center ">
               <div className={`flex m-3 flex-wrap p-0.5 justify-center rounded-2xl gap-1 items-center hover:drop-shadow-xl ${jobRole === "DevOps" ? "bg-purple-700" : ""}`}>
                 <div 
@@ -58,7 +58,7 @@ const InterviewDashboard = () => {
               </div>
           </div>
 
-          <h2 className="flex justify-center text-lg mt-10 font-medium text-gray-700 mb-3">Choose Your Age Bracket ...</h2> 
+          <h2 className="flex justify-center text-lg mt-10 font-medium text-gray-700 mb-3">Choose Your Experience Level ...</h2> 
             <div className="flex relative flex-wrap lg:flex-nowrap justify-center ">
             <div className={`flex m-3 flex-wrap p-0.5 justify-center rounded-2xl gap-1 items-center hover:drop-shadow-xl ${skillLevel === "Junior" ? "bg-purple-700" : ""}`}>
               <div 
@@ -131,17 +131,17 @@ const InterviewDashboard = () => {
                 </div>
               </div>
           </div>
-          
+
           <div className="flex relative mt-20 flex-wrap lg:flex-nowrap justify-center ">
             <button
               type="button"
-              disabled={!jobRole || !skillLevel}
+              disabled={!jobRole || !skillLevel || !interviewType}
               onClick={()=> {
                 setIsInterviewOn(true);
                 navigate('/emulate-interview');
               }}
               className={`mt-2 text-white font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center ${
-                !jobRole || !skillLevel
+                !jobRole || !skillLevel || !interviewType
                   ? 'bg-gray-400 cursor-not-allowed'
                   : 'bg-green-700'
               }`}

@@ -5,7 +5,8 @@ type Interview
   @auth(rules: [{ allow: owner, operations: [create, delete, update, read] }]) {
 	id: ID!
 	title: String!
-	profileInterviewsId: ID!
+	experience: String!
+	interviewType: String!
 	type: String! @index(name: "interviewsByDate", queryField: "interviewsByDate", sortKeyFields: ["createdAt"])
 	createdAt: AWSDateTime!
 	updatedAt: AWSDateTime!

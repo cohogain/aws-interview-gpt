@@ -4,12 +4,11 @@
 export const createInterview = /* GraphQL */ `
   mutation CreateInterview(
     $input: CreateInterviewInput!
-    $condition: ModelInterviewConditionInput
   ) {
-    createInterview(input: $input, condition: $condition) {
-      id
+    createInterview(input: $input) {
       title
-      profileInterviewsId
+      experience
+      inteviewType
       type
       createdAt
       updatedAt
@@ -25,7 +24,6 @@ export const updateInterview = /* GraphQL */ `
     updateInterview(input: $input, condition: $condition) {
       id
       title
-      profileInterviewsId
       type
       createdAt
       updatedAt
