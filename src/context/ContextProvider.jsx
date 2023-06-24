@@ -11,6 +11,7 @@ const initialState = {
 }
 
 const ContextProvider = ({ children }) => {
+    const [interviewId, setInterviewId] = useState("");
     const [activeMenu, setActiveMenu] = useState(true);
     const [screenSize, setScreenSize] = useState(undefined);
     const [currentColor, setCurrentColor] = useState('#4f31d4');
@@ -76,9 +77,11 @@ const ContextProvider = ({ children }) => {
                 summary,
                 resume,
                 skillLevel,
+                interviewId,
                 interviewType,
                 isInterviewOn,
                 interviews,
+                setInterviewId,
                 setIsEditable,
                 setFirstname,
                 setSurname,

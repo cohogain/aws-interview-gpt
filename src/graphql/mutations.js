@@ -8,11 +8,9 @@ export const createInterview = /* GraphQL */ `
     createInterview(input: $input) {
       title
       experience
-      inteviewType
+      interviewType
       type
-      createdAt
-      updatedAt
-      owner
+      id
     }
   }
 `;

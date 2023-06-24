@@ -1,11 +1,11 @@
 import { API, graphqlOperation } from 'aws-amplify';
 import { createInterview as createInterviewMutation } from '../graphql/mutations';
 
-export const createInterview = async ({ title, experience, inteviewType }) => {
+export const createInterview = async ({ title, experience, interviewType }) => {
   const input = {
     title: title,
     experience: experience,
-    inteviewType: inteviewType,
+    interviewType: interviewType,
     type: "Interview"
   };
   console.log(input)
@@ -15,7 +15,7 @@ export const createInterview = async ({ title, experience, inteviewType }) => {
     );
     return result;
   } catch (error) {
-    console.error('Error creating inteview:', error);
+    console.error('Error creating interview:', error);
     return null;
   }
 };

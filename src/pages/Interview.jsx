@@ -7,11 +7,12 @@ import axios from 'axios';
 import awsmobile from '../aws-exports';
 import { Auth } from 'aws-amplify';
 import { createMessage as createMessageMutation } from '../graphql/mutations';
+import { useStateContext } from '../context/ContextProvider';
 
 const Interview = () => {
+    const { setJobRole, jobRole, setSkillLevel, skillLevel, interviewType, setInterviewType, interviewId, setInterviewId } = useStateContext();
     const [messages, setMessages] = useState([]);
     const [isTyping, setIsTyping] = useState(false);
-    const [interviewId, setInterviewId] = useState("a2ceea1a-c63a-43b9-a040-1528247e9403")
     const systemMessage = { 
         "role": "system", "content": `You are a job interviewer. You will interview candidates for the role they provide and ask then questions \
             on their past experiences.
@@ -19,7 +20,7 @@ const Interview = () => {
       };
     useEffect(() => {
         fetchMessages();
-      }, []);
+      }, [messages]);
 
     useEffect(() => {
         const filter = {

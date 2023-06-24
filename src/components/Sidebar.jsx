@@ -28,7 +28,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="sidebar ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
+    <div className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
       {activeMenu && (
         <>
             {route !== 'authenticated' ? (
@@ -67,7 +67,7 @@ const Sidebar = () => {
               </div>
               <div key="interview">
                 <NavLink
-                  to={'/interview'}
+                  to={'/interview-menu'}
                   key={'interview'}
                   onClick={() => {}}
                   style={({ isActive }) => ({

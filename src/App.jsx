@@ -23,10 +23,18 @@ const App = () => {
                 <Route path="/" element={<Sidebar />}>
                   <Route index element={<Home />} />
                   <Route
-                    path="/interview"
+                    path="/interview-menu"
                     element={
                       <RequireAuth>
                         <InterviewStart />
+                      </RequireAuth>
+                    }
+                  />
+                  <Route
+                    path="/interview"
+                    element={
+                      <RequireAuth>
+                        <Interview />
                       </RequireAuth>
                     }
                   />
