@@ -4,23 +4,32 @@ import { messagesByDate } from '../graphql/queries';
 import { onCreateMessage } from '../graphql/subscriptions';
 import { MessagesList, SendMessage } from '../components';
 import axios from 'axios';
-import awsmobile from '../aws-exports';
-import { Auth } from 'aws-amplify';
 import { createMessage as createMessageMutation } from '../graphql/mutations';
 import { useStateContext } from '../context/ContextProvider';
+import { useLocation } from 'react-router-dom';
 
 const Interview = () => {
-    const { setJobRole, jobRole, setSkillLevel, skillLevel, interviewType, setInterviewType, interviewId, setInterviewId } = useStateContext();
+    const location = useLocation();
+    const interviewId = location.state.interviewId;
+    const jobRole = location.state.jobRole;
+    const skillLevel = location.state.skillLevel;
+    const interviewType = location.state.interviewType;
     const [messages, setMessages] = useState([]);
-    const [isTyping, setIsTyping] = useState(false);
     const systemMessage = { 
-        "role": "system", "content": `You are a job interviewer. You will interview candidates for the role they provide and ask then questions \
-            on their past experiences.
-        """`
-      };
+            "role": "system", "content": `You are a job interviewer. You will interview candidates for the role they provide and ask then questions \
+                on their past experiences.`};
+    const userMessage = [{ "sender": "user", "message": `I am here for a ${interviewType} interview for a ${skillLevel} ${jobRole}. Please welcome me and start the interview`}];
+
     useEffect(() => {
-        fetchMessages();
-      }, [messages]);
+        fetchAndStartInterview();
+    }, [interviewId]);
+
+    const fetchAndStartInterview = async () => {
+        const fetchedMessages = await fetchMessages();
+        if (fetchedMessages.length === 0) {
+            generateResponse(userMessage);
+        }
+    };
 
     useEffect(() => {
         const filter = {
@@ -40,8 +49,7 @@ const Interview = () => {
                     if (newMessage.sender !== "ChatGPT") {
                         generateResponse(updatedMessages);
                     }
-    
-                    setIsTyping(false);
+
                     // Return updated messages array for state update
                     return updatedMessages;
                 });
@@ -53,11 +61,10 @@ const Interview = () => {
         return () => {
             subscription.unsubscribe();
           };
-    }, [messages]);
+    }, [interviewId]);
 
     const generateResponse = async (chatMessages) => {
         let apiMessages = [];
-        setIsTyping(true);
         if (chatMessages != null) {
           apiMessages = chatMessages.map((messageObject) => {
             let role = "";
@@ -97,7 +104,6 @@ const Interview = () => {
                 const result = await API.graphql(
                   graphqlOperation(createMessageMutation, { input })
                 );
-                console.log(result);
                 return result;
               } catch (error) {
                 console.error('Error creating message:', error);
@@ -121,9 +127,12 @@ const Interview = () => {
                     sortDirection: 'ASC'
                 })
             );
-            setMessages(result.data.messagesByDate.items);
+            const fetchedMessages = result.data.messagesByDate.items;
+            setMessages(fetchedMessages);
+            return fetchedMessages;
         } catch (error) {
             console.error('Error fetching messages:', error);
+            return [];
         }
     };
 

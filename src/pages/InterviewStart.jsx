@@ -10,12 +10,13 @@ import interviewTask from '../assets/interviewTask.svg';
 import halfEarthForest from '../assets/halfEarthForest.svg';
 import { createInterview } from '../services/interviewService';
 import { useStateContext } from '../context/ContextProvider';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const InterviewStart = () => {
     const { setJobRole, jobRole, setSkillLevel, skillLevel, interviewType, setInterviewType, interviewId, setInterviewId } = useStateContext();
-
+    const navigate = useNavigate();
     return (
-        <div className='mt-12'>
+        <div>
             <h2 className="flex justify-center mt-10 text-lg font-medium text-gray-700 mb-3">Choose Your Job Title ...</h2> 
             <div className="flex relative flex-wrap pd-20 lg:flex-nowrap justify-center ">
                 <div className={`flex m-3 flex-wrap p-0.5 justify-center rounded-2xl gap-1 items-center hover:drop-shadow-xl ${jobRole === "DevOps" ? "bg-purple-700" : ""}`}>
@@ -133,8 +134,7 @@ const InterviewStart = () => {
                 disabled={!jobRole || !skillLevel || !interviewType}
                 onClick={async ()=> {
                 const result = await createInterview({title: jobRole, experience: skillLevel, interviewType: interviewType});
-                console.log(result.data.createInterview.id)
-                setInterviewId(result.data.createInterview.id);
+                navigate("/interview", { state: { jobRole: jobRole, skillLevel: skillLevel, interviewType: interviewType, interviewId: result.data.createInterview.id }})
                 }}
                 className={`mt-2 text-white font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center ${
                 !jobRole || !skillLevel || !interviewType

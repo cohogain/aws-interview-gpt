@@ -8,49 +8,58 @@ import { Authenticator } from '@aws-amplify/ui-react';
 import { RequireAuth } from './RequireAuth';
 import { Sidebar } from './components';
 import './App.css'
+import { useStateContext } from './context/ContextProvider';
 
 Amplify.configure(awsmobile);
 
 const App = () => {
+  const { activeMenu } = useStateContext();
+
   return (
-    <Authenticator>
+    <Authenticator className='flex relative bg-main-dark-bg'>
     {({ signOut, user }) => (
-      <div>
+      <div className='flex h-screen overflow-hidden'>
         <BrowserRouter>
-        <div className='flex relative dark:bg-main-dark-bg'>
-          <div>
-            <Routes>
-                <Route path="/" element={<Sidebar />}>
-                  <Route index element={<Home />} />
-                  <Route
-                    path="/interview-menu"
-                    element={
-                      <RequireAuth>
-                        <InterviewStart />
-                      </RequireAuth>
-                    }
-                  />
-                  <Route
-                    path="/interview"
-                    element={
-                      <RequireAuth>
-                        <Interview />
-                      </RequireAuth>
-                    }
-                  />
-                  <Route
-                    path="/resume"
-                    element={
-                      <RequireAuth>
-                        <Resume />
-                      </RequireAuth>
-                    }
-                  />
-                </Route>
-            </Routes>
+          <div className={`fixed h-full z-20 transition-all duration-300 ease-in-out ${activeMenu ? 'w-72' : 'w-0'} bg-secondary-dark-bg bg-white`}>
+            <Sidebar />
           </div>
+          <div className='ml-72 w-full overflow-auto'>
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <RequireAuth>
+                  <Home />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/interview-menu"
+              element={
+                <RequireAuth>
+                  <InterviewStart />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/interview"
+              element={
+                <RequireAuth>
+                  <Interview />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/resume"
+              element={
+                <RequireAuth>
+                  <Resume />
+                </RequireAuth>
+              }
+            />
+          </Routes>
         </div>
-        </BrowserRouter>
+      </BrowserRouter>
       </div>
     )}
     </Authenticator>
@@ -58,5 +67,3 @@ const App = () => {
 }
 
 export default App
-
-

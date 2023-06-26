@@ -31,24 +31,11 @@ const Sidebar = () => {
     <div className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
       {activeMenu && (
         <>
-            {route !== 'authenticated' ? (
-                <Button onClick={() => navigate('/login')}>Login</Button>
-            ) : (
-                <Button onClick={() => logOut()}>Logout</Button>
-            )}
           <div className="flex justify-between items-center">
             <Link to="/" onClick={handleCloseSideBar}
               className="items-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900">
                 <MdOutlineSupportAgent /> <span>InterviewGPT</span>
             </Link>
-            <div>
-              <button 
-                type="button" 
-                onClick={() => setActiveMenu(false)}
-                className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block md:hidden">
-                <MdOutlineCancel />
-              </button>
-            </div>
           </div>
           <div className="mt-10 ">
               <div key="home">
@@ -96,8 +83,6 @@ const Sidebar = () => {
           </div>
       </>
     )}
-    
-    <Outlet />
     </div>
     
   );
