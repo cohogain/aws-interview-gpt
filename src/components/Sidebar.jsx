@@ -28,7 +28,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
+    <div className="ml-3 mr-10 w-full h-screen md:overflow-hidden pb-10">
       {activeMenu && (
         <>
           <div className="flex justify-between items-center">
@@ -37,7 +37,7 @@ const Sidebar = () => {
                 <MdOutlineSupportAgent /> <span>InterviewGPT</span>
             </Link>
           </div>
-          <div className="mt-10 ">
+          <div className="pl-30 mt-10 ">
               <div key="home">
                 <NavLink
                   to={'/'}

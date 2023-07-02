@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import agile from '../assets/agile.svg';
 import ai from '../assets/artificial-intelligence.svg';
 import coding from '../assets/coding.svg';
@@ -11,13 +11,39 @@ import halfEarthForest from '../assets/halfEarthForest.svg';
 import { createInterview } from '../services/interviewService';
 import { useStateContext } from '../context/ContextProvider';
 import { Navigate, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const InterviewStart = () => {
     const { setJobRole, jobRole, setSkillLevel, skillLevel, interviewType, setInterviewType, interviewId, setInterviewId } = useStateContext();
     const navigate = useNavigate();
+    const {jobDescription, setJobDescription} = useState("");
+    const {jobUrl, setJobUrl} = useState("");
+    const [content, setContent] = useState('');
+
+    const getJobDetails = async (content) => {
+        const payload = {
+            "url": content,
+        };
+        console.log(payload)
+
+        try {
+            const response = await axios.post('https://8v9hz3gal8.execute-api.eu-west-1.amazonaws.com/job', payload, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            
+            console.log(response.data)
+            return response.data;
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
     return (
         <div>
-            <h2 className="flex justify-center mt-10 text-lg font-medium text-gray-700 mb-3">Choose Your Job Title ...</h2> 
+            {/*<h2 className="flex justify-center mt-10 text-lg font-medium text-gray-700 mb-3">Choose Your Job Title ...</h2> 
             <div className="flex relative flex-wrap pd-20 lg:flex-nowrap justify-center ">
                 <div className={`flex m-3 flex-wrap p-0.5 justify-center rounded-2xl gap-1 items-center hover:drop-shadow-xl ${jobRole === "DevOps" ? "bg-purple-700" : ""}`}>
                 <div 
@@ -89,7 +115,7 @@ const InterviewStart = () => {
                 </div>
                 </div>
             </div>
-            </div>
+            </div> */}
 
             <h2 className="flex justify-center text-lg mt-10 font-medium text-gray-700 mb-3">Choose Your Interview Type ...</h2> 
             <div className="flex relative flex-wrap lg:flex-nowrap justify-center ">
@@ -127,17 +153,28 @@ const InterviewStart = () => {
                 </div>
                 </div>
             </div>
+            <input
+                name="body"
+                placeholder="Enter LinkedIn job url"
+                value={content}
+                onChange={e => setContent(e.target.value)}
+                autoComplete="off"
+                className="flex-grow h-10 border border-gray-300 rounded-l-md p-2 mt-2"
+            />
 
             <div className="flex relative mt-20 flex-wrap lg:flex-nowrap justify-center ">
             <button
                 type="button"
-                disabled={!jobRole || !skillLevel || !interviewType}
+                disabled={!interviewType}
                 onClick={async ()=> {
-                const result = await createInterview({title: jobRole, experience: skillLevel, interviewType: interviewType});
-                navigate("/interview", { state: { jobRole: jobRole, skillLevel: skillLevel, interviewType: interviewType, interviewId: result.data.createInterview.id }})
+                    const jobDetails = await getJobDetails(content);
+                    console.log(jobDetails)
+                    const result = await createInterview({title: jobDetails.job_title, experience: jobDetails.experience_level, interviewType: interviewType});
+                    navigate("/interview", { state: { jobDescription: jobDetails.job_description, interviewType: interviewType, interviewId: result.data.createInterview.id, experience_level: jobDetails.experience_level, job_title: jobDetails.job_title}})
+                    setInterviewType("")
                 }}
                 className={`mt-2 text-white font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center ${
-                !jobRole || !skillLevel || !interviewType
+                !interviewType
                     ? 'bg-gray-400 cursor-not-allowed'
                     : 'bg-green-700'
                 }`}

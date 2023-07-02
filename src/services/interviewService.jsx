@@ -8,7 +8,7 @@ export const createInterview = async ({ title, experience, interviewType }) => {
     interviewType: interviewType,
     type: "Interview"
   };
-  console.log(input)
+  
   try {
     const result = await API.graphql(
       graphqlOperation(createInterviewMutation, { input })

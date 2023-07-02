@@ -32,16 +32,9 @@ export const updateInterview = /* GraphQL */ `
 export const deleteInterview = /* GraphQL */ `
   mutation DeleteInterview(
     $input: DeleteInterviewInput!
-    $condition: ModelInterviewConditionInput
   ) {
-    deleteInterview(input: $input, condition: $condition) {
+    deleteInterview(input: $input) {
       id
-      title
-      profileInterviewsId
-      type
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;

@@ -1,5 +1,6 @@
 import { API, graphqlOperation } from 'aws-amplify';
 import { createMessage as createMessageMutation } from '../graphql/mutations';
+import { useStateContext } from '../context/ContextProvider';
 
 export const createMessage = async ({ sender, message, messageInterviewId, direction }) => {
   const input = {
@@ -9,7 +10,7 @@ export const createMessage = async ({ sender, message, messageInterviewId, direc
     direction: direction,
     type: "Message"
   };
-  console.log(input)
+
   try {
     const result = await API.graphql(
       graphqlOperation(createMessageMutation, { input })

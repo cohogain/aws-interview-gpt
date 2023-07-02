@@ -120,11 +120,8 @@ export const interviewsByDate = /* GraphQL */ `
       items {
         id
         title
-        profileInterviewsId
+        experience
         type
-        createdAt
-        updatedAt
-        owner
       }
       nextToken
     }

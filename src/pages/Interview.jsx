@@ -7,18 +7,23 @@ import axios from 'axios';
 import { createMessage as createMessageMutation } from '../graphql/mutations';
 import { useStateContext } from '../context/ContextProvider';
 import { useLocation } from 'react-router-dom';
+import { MdOutlineCancel } from 'react-icons/md';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Interview = () => {
     const location = useLocation();
     const interviewId = location.state.interviewId;
-    const jobRole = location.state.jobRole;
-    const skillLevel = location.state.skillLevel;
+    const job_title = location.state.job_title;
+    const experience_level = location.state.experience_level;
     const interviewType = location.state.interviewType;
+    const job_description = location.state.job_description;
     const [messages, setMessages] = useState([]);
     const systemMessage = { 
             "role": "system", "content": `You are a job interviewer. You will interview candidates for the role they provide and ask then questions \
                 on their past experiences.`};
-    const userMessage = [{ "sender": "user", "message": `I am here for a ${interviewType} interview for a ${skillLevel} ${jobRole}. Please welcome me and start the interview`}];
+    const userMessage = [{ "sender": "user", "message": `I am here for a ${interviewType} interview for a ${experience_level} ${job_title}. The full job description is: ${job_description}. Now please welcome me and start the interview`}];
+    const { handleClick, isClicked, interviews, setResume, setFirstname, setSurname, setBio, setIsClicked,setCompany, setJobTitle, setStartDate, setEndDate, setSummary, setInterviews } = useStateContext();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchAndStartInterview();
@@ -102,13 +107,13 @@ const Interview = () => {
               
             try {
                 const result = await API.graphql(
-                  graphqlOperation(createMessageMutation, { input })
+                    graphqlOperation(createMessageMutation, { input })
                 );
                 return result;
-              } catch (error) {
+            } catch (error) {
                 console.error('Error creating message:', error);
                 return null;
-              }
+            }
 
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -137,7 +142,14 @@ const Interview = () => {
     };
 
     return (
-        <div>
+        <div className="nav-item absolute center card top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg">
+            <button 
+                type="button"
+                onClick={() => {
+                    navigate("/home")}
+                }>
+                <MdOutlineCancel className='h-6 w-6'/>
+            </button>
             <MessagesList
                 messages={messages}
             />
