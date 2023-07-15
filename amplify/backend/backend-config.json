@@ -53,17 +53,16 @@
       "service": "Cognito"
     }
   },
-  "function": {
-    "interviewamplifyf4c3ff00": {
-      "build": true,
-      "dependsOn": [],
+  "predictions": {
+    "interviewSpeachGeneration": {
+      "convertType": "speechGenerator",
       "providerPlugin": "awscloudformation",
-      "service": "Lambda"
+      "service": "Polly"
     },
-    "interviewamplifyopenaipythonlayer": {
-      "build": true,
+    "interviewTranscribe": {
+      "convertType": "transcription",
       "providerPlugin": "awscloudformation",
-      "service": "LambdaLayer"
+      "service": "Transcribe"
     }
   }
 }

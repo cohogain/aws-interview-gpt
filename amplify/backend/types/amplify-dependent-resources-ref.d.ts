@@ -16,16 +16,15 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolName": "string"
     }
   },
-  "function": {
-    "interviewamplifyf4c3ff00": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "LambdaExecutionRoleArn": "string",
-      "Name": "string",
-      "Region": "string"
+  "predictions": {
+    "interviewSpeachGeneration": {
+      "language": "string",
+      "region": "string",
+      "voice": "string"
     },
-    "interviewamplifyopenaipythonlayer": {
-      "Arn": "string"
+    "interviewTranscribe": {
+      "language": "string",
+      "region": "string"
     }
   }
 }

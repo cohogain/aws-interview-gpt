@@ -1,0 +1,14 @@
+{
+    "resourceName": "interviewSpeachGeneration",
+    "convertPolicyName": "speechGeneratorPolicy64ba7687",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "convertType": "speechGenerator",
+    "language": "en-US",
+    "voice": "Ruth",
+    "access": "auth"
+}

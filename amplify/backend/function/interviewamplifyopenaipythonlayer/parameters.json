@@ -1,8 +1,0 @@
-{
-  "runtimes": [
-    "python3.9"
-  ],
-  "s3Key": "openai_lambda_layer.zip",
-  "deploymentBucketName": "interviewgptbucket",
-  "description": "Updated layer version 2023-06-18T13:34:43.319Z"
-}

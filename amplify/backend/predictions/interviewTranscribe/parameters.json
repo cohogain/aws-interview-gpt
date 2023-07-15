@@ -1,0 +1,13 @@
+{
+    "resourceName": "interviewTranscribe",
+    "convertPolicyName": "transcriptionPolicy206f3ce8",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "convertType": "transcription",
+    "language": "en-GB",
+    "access": "auth"
+}

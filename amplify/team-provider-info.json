@@ -18,9 +18,9 @@
       "api": {
         "interviewamplify": {}
       },
-      "function": {
-        "interviewamplifyf4c3ff00": {},
-        "interviewamplifyopenaipythonlayer": {}
+      "predictions": {
+        "interviewTranscribe": {},
+        "interviewSpeachGeneration": {}
       }
     }
   }
