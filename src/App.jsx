@@ -9,7 +9,9 @@ import { RequireAuth } from './RequireAuth';
 import { Sidebar } from './components';
 import './App.css'
 import { useStateContext } from './context/ContextProvider';
+import { AmazonAIPredictionsProvider } from '@aws-amplify/predictions';
 
+Amplify.addPluggable(new AmazonAIPredictionsProvider());
 Amplify.configure(awsmobile);
 
 const App = () => {
