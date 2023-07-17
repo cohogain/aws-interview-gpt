@@ -9,6 +9,7 @@ import { useStateContext } from '../context/ContextProvider';
 import { useLocation } from 'react-router-dom';
 import { MdOutlineCancel } from 'react-icons/md';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { Predictions } from 'aws-amplify';
 
 const Interview = () => {
     const location = useLocation();
@@ -18,6 +19,7 @@ const Interview = () => {
     const interviewType = location.state.interviewType;
     const job_description = location.state.job_description;
     const [messages, setMessages] = useState([]);
+    const [chatResponse, setChatResponse] = useState();
     const systemMessage = { 
             "role": "system", "content": `You are a job interviewer. You will interview candidates for the role they provide and ask then questions \
                 on their past experiences.`};
@@ -104,7 +106,9 @@ const Interview = () => {
                 direction: "incoming",
                 type: "Message"
             };
-              
+            console.log(response.data)
+            convertToSpeech(response.data);
+
             try {
                 const result = await API.graphql(
                     graphqlOperation(createMessageMutation, { input })
@@ -139,6 +143,37 @@ const Interview = () => {
             console.error('Error fetching messages:', error);
             return [];
         }
+    };
+    
+    const convertToSpeech = async (textToGenerateSpeech) => {
+        try {
+            const speech_ = await Predictions.convert({
+                textToSpeech: {
+                  source: {
+                    text: textToGenerateSpeech,
+                  },
+                  voiceId: "Amy" // default configured on aws-exports.js 
+                  // list of different options are here https://docs.aws.amazon.com/polly/latest/dg/voicelist.html
+                }
+            });
+            // Create a new audio element
+            let audio = new Audio();
+            
+            if (speech_) {
+                console.log(speech_);
+                if (speech_.speech){
+                    console.log(speech_.speech.url)
+                }
+            
+                // Set the source of the audio element to the speech URL
+                audio.src = speech_.speech.url;
+                audio.play();
+            } else {
+                console.log("no speech")
+            }
+        } catch (error) {
+            console.error('Error generating speech:', error);
+        }  
     };
 
     return (
