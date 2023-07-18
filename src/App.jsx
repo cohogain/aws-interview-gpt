@@ -25,10 +25,8 @@ const App = () => {
     {({ signOut, user }) => (
       <div className='flex h-screen overflow-hidden'>
         <BrowserRouter>
-          <div className={`fixed h-full overflow-hidden z-20 transition-all duration-300 ease-in-out mr-10 ${activeMenu ? 'w-72' : 'w-0'} bg-secondary-dark-bg bg-white`}>
-            <Sidebar />
-          </div>
-          <div className='ml-80 w-full'>
+          <Sidebar />
+          <div className='w-full'>
           <Routes>
             <Route 
               path="/" 

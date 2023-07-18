@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuthenticator, Button, Heading, View } from '@aws-amplify/ui-react';
 import { MdOutlineCancel, MdOutlineSupportAgent } from 'react-icons/md';
-import { AiOutlineHome, AiOutlineContacts, AiOutlineFileText } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineContacts, AiOutlineFileText, AiOutlineSetting, AiOutlineInfoCircle} from 'react-icons/ai';
 import { useStateContext } from "../context/ContextProvider";
 
 const Sidebar = () => {
@@ -28,7 +28,8 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="ml-3 mr-10 w-full h-screen md:overflow-hidden pb-10">
+    <div className="border-r border-gray-500 ml-3 mr-10 w-1/4 h-screen md:overflow-hidden pb-10">
+      <div className="w-full h-full">
       {activeMenu && (
         <>
           <div className="flex justify-between items-center">
@@ -37,7 +38,8 @@ const Sidebar = () => {
                 <MdOutlineSupportAgent /> <span>InterviewGPT</span>
             </Link>
           </div>
-          <div className="pl-30 mt-10 ">
+          <div className="border-b border-gray-300 my-4"></div>
+          <div className="pl-30 mt-2">
               <div key="home">
                 <NavLink
                   to={'/'}
@@ -80,9 +82,31 @@ const Sidebar = () => {
                   <span className="capitalize ">resume</span>
                 </NavLink>
               </div>
+              <div className="absolute bottom-4 w-auto">
+              <div className="border-b border-gray-300 my-4"></div>
+                <div>
+                  <NavLink 
+                    to={'/settings'}
+                    onClick={() => {}}
+                    className={normalLink}
+                  >
+                    <AiOutlineSetting />
+                    <span className="capitalize">settings</span>
+                  </NavLink>
+                  <NavLink 
+                    to={'/about'}
+                    onClick={() => {}}
+                    className={normalLink}
+                  >
+                    <AiOutlineInfoCircle />
+                    <span className="capitalize">about</span>
+                  </NavLink>
+                </div>
+              </div>
           </div>
       </>
     )}
+    </div>
     </div>
     
   );
