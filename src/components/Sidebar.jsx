@@ -7,8 +7,7 @@ import { useStateContext } from "../context/ContextProvider";
 
 const Sidebar = () => {
   const { currentColor, activeMenu, setActiveMenu, screenSize } = useStateContext();
-  const activeLink = 'flex items-center gap-5 pl-4 pt-2.5 pb-2.5 pr-20 rounded-full text-white text-md m-2';
-  const normalLink = 'flex items-center gap-5 pl-4 pt-2.5 pb-2.5 pr-20 rounded-full text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2';
+  const activeLink = 'flex items-center gap-5 py-2.5 text-md text-gray-700';
 
   const { route, signOut } = useAuthenticator((context) => [
     context.route,
@@ -46,9 +45,11 @@ const Sidebar = () => {
                   key={'home'}
                   onClick={() => {}}
                   style={({ isActive }) => ({
-                    backgroundColor: isActive ? currentColor : '',
+                    borderRightColor: isActive ? currentColor : 'transparent',
+                    borderRightWidth: '4px'
                   })}
-                  className={({ isActive }) => (isActive ? activeLink : normalLink)}
+                  //className={({ isActive }) => (isActive ? activeLink : normalLink)}
+                  className={ activeLink }
                 >
                   <AiOutlineHome />
                   <span className="capitalize ">home</span>
@@ -60,9 +61,11 @@ const Sidebar = () => {
                   key={'interview'}
                   onClick={() => {}}
                   style={({ isActive }) => ({
-                    backgroundColor: isActive ? currentColor : '',
+                    borderRightColor: isActive ? currentColor : 'transparent',
+                    borderRightWidth: isActive ? '4px' : '',
                   })}
-                  className={({ isActive }) => (isActive ? activeLink : normalLink)}
+                  // className={({ isActive }) => (isActive ? activeLink : normalLink)}
+                  className={ activeLink }
                 >
                   <AiOutlineContacts />
                   <span className="capitalize ">interview</span>
@@ -74,36 +77,37 @@ const Sidebar = () => {
                   key={'resume'}
                   onClick={() => {}}
                   style={({ isActive }) => ({
-                    backgroundColor: isActive ? currentColor : '',
+                    borderRightColor: isActive ? currentColor : 'transparent',
+                    borderRightWidth: isActive ? '4px' : '',
                   })}
-                  className={({ isActive }) => (isActive ? activeLink : normalLink)}
+                  // className={({ isActive }) => (isActive ? activeLink : normalLink)}
+                  className={ activeLink }
                 >
                   <AiOutlineFileText />
                   <span className="capitalize ">resume</span>
                 </NavLink>
               </div>
-              <div className="absolute bottom-4 w-auto">
-              <div className="border-b border-gray-300 my-4"></div>
-                <div>
-                  <NavLink 
-                    to={'/settings'}
-                    onClick={() => {}}
-                    className={normalLink}
-                  >
-                    <AiOutlineSetting />
-                    <span className="capitalize">settings</span>
-                  </NavLink>
-                  <NavLink 
-                    to={'/about'}
-                    onClick={() => {}}
-                    className={normalLink}
-                  >
-                    <AiOutlineInfoCircle />
-                    <span className="capitalize">about</span>
-                  </NavLink>
-                </div>
-              </div>
-          </div>
+            </div>
+            
+            <div className="bottom-4 border-b border-gray-300 my-4"></div>
+            <div>
+              <NavLink 
+                to={'/settings'}
+                onClick={() => {}}
+                className={activeLink}
+              >
+                <AiOutlineSetting />
+                <span className="capitalize">settings</span>
+              </NavLink>
+              <NavLink 
+                to={'/about'}
+                onClick={() => {}}
+                className={activeLink}
+              >
+                <AiOutlineInfoCircle />
+                <span className="capitalize">about</span>
+              </NavLink>
+            </div>
       </>
     )}
     </div>

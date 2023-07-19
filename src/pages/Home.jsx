@@ -103,25 +103,32 @@ const Home = () => {
   } else {
     return (
       <div className='mt-12'>
-        <h2 className="flex justify-center text-lg mt-20 font-medium text-gray-700 mb-3">Completed assessments</h2>
-        <div className='flex justify-center'>
+        <h2 className="flex justify-center text-lg mt-20 font-medium text-blue-700 mb-3">Completed assessments</h2>
+        <div className='flex justify-center w-full px-5'>
           {!interviews ? (
             <p>No interviews found</p>
           ) : (
-            <ul>
+            <ul className="w-full">
               {interviews.map((interview) => (
                 <div 
                   key={interview.id} 
-                  className="flex ml-5 bg-gray-100 rounded-lg p-4 mb-4 shadow-md cursor-pointer hover:bg-gray-200"
+                  className="flex bg-white border border-gray-300 rounded-lg p-4 mb-4 shadow-md cursor-pointer hover:bg-blue-200 w-full"
                   onClick={() => {
                     handleClick("chat");
                     setInterviewId(interview.id);
                   }}
                 >
-                  <div className="flex flex-grow justify-center items-center">
-                    <div className="text-center">
-                      <p className="font-medium text-gray-500">ID</p>
-                      <p className="font-semibold text-lg mb-1">{interview.id}</p>
+                  <div className="justify-between">
+                    <div className="flex">
+                      <div className="text-center mr-4">
+                        <p className="font-semibold text-lg mb-1 text-gray-500">{interview.id.slice(0, 5)}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-lg mb-1">{interview.title}</p>
+                      </div>
+                    </div>
+                    <div className='justify-start'>
+                      <p className="font-medium text-sm text-gray-500">{interview.experience}</p>
                     </div>
                   </div>
                   <div className="flex justify-end items-center ml-10">
@@ -142,6 +149,7 @@ const Home = () => {
         </div>
       </div>
     )
+    
   }
 }
 
