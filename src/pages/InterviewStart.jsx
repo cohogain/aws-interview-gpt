@@ -30,7 +30,6 @@ const InterviewStart = () => {
             const response = await axios.post('https://8v9hz3gal8.execute-api.eu-west-1.amazonaws.com/job', payload, {
                 headers: {
                     'Content-Type': 'application/json',
-                    "Access-Control-Allow-Origin": "*"
                 }
             });
             
